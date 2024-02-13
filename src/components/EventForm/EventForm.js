@@ -132,18 +132,18 @@ const EventForm = ({ onClose, onEventCreated, eventId, onEventUpdated }) => {
             required
           >
             <option value="">Select Type</option>
-            <option value="meeting">Meeting</option>
-            <option value="project">Project</option>
-            <option value="tournament">Tournament</option>
-            <option value="merger">Merger</option>
-            <option value="dividends">Dividends</option>
-            <option value="hire">Hire</option>
-            <option value="newcapital">New Capital</option>
-            <option value="convention">Convention</option>
-            <option value="social">Social</option>
-            <option value="academicsemester">Academic Semester</option>
-            <option value="holiday">Holiday</option>
-            <option value="campaign">Campaign</option>
+            <option value="Meeting">Meeting</option>
+            <option value="Project">Project</option>
+            <option value="Tournament">Tournament</option>
+            <option value="Merger">Merger</option>
+            <option value="Dividends">Dividends</option>
+            <option value="Hire">Hire</option>
+            <option value="New Capital">New Capital</option>
+            <option value="Convention">Convention</option>
+            <option value="Social">Social</option>
+            <option value="Academic Semester">Academic Semester</option>
+            <option value="Holiday">Holiday</option>
+            <option value="Campaign">Campaign</option>
           </select>
           {formik.touched.type && formik.errors.type ? (
             <div className="error-message">{formik.errors.type}</div>
