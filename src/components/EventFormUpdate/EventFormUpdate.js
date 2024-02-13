@@ -94,6 +94,15 @@ const EventFormUpdate = ({ eventId, onClose, onEventUpdated }) => {
             <option value="meeting">Meeting</option>
             <option value="project">Project</option>
             <option value="tournament">Tournament</option>
+            <option value="merger">Merger</option>
+            <option value="dividends">Dividends</option>
+            <option value="hire">Hire</option>
+            <option value="newcapital">New Capital</option>
+            <option value="convention">Convention</option>
+            <option value="social">Social</option>
+            <option value="academicsemester">Academic Semester</option>
+            <option value="holiday">Holiday</option>
+            <option value="campaign">Campaign</option>
           </select>
         </div>
         <div className="button-container">

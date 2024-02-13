@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import EventFormUpdate from '../EventFormUpdate/EventFormUpdate';
+//import EventFormUpdate from '../EventFormUpdate/EventFormUpdate';
+import EventForm from '../EventForm/EventForm';
+
 import './EventList.css';
 
 const URL = "http://localhost:4000";
 
 const EventList = ({ refreshKey }) => {
   const [events, setEvents] = useState([]);
-  
   const [editEventId, setEditEventId] = useState(null);
+
+  useEffect(() => {
+    fetchEvents();
+  }, [refreshKey]);
 
   const openEditModal = (eventId) => {
     setEditEventId(eventId);
@@ -30,10 +35,6 @@ const EventList = ({ refreshKey }) => {
     }
   };
 
-  useEffect(() => {
-    fetchEvents();
-  }, [refreshKey]);
-
   const deleteEvent = async (eventId) => {
     try {
       const response = await fetch(`${URL}/events/${eventId}`, {
@@ -45,19 +46,6 @@ const EventList = ({ refreshKey }) => {
       fetchEvents();
     } catch (error) {
       console.error('Error deleting event:', error);
-    }
-  };
-
-  const fetchEventById = async (eventId) => {
-    try {
-      const response = await fetch(`${URL}/events/${eventId}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch event');
-      }
-      const eventData = await response.json();
-      console.log('Fetched event:', eventData);
-    } catch (error) {
-      console.error('Error fetching event:', error);
     }
   };
 
@@ -92,7 +80,7 @@ const EventList = ({ refreshKey }) => {
        <div className="modal">
         <div className="modal-content">
           <span className="close" onClick={closeEditModal}>&times;</span>
-            <EventFormUpdate eventId={editEventId} onClose={closeEditModal} onEventUpdated={fetchEvents}/>
+            <EventForm eventId={editEventId} onClose={closeEditModal} onEventUpdated={fetchEvents}/>
         </div>
       </div>}
     </div>
