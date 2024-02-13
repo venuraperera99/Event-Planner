@@ -32,8 +32,13 @@
     text-decoration: none;
     cursor: pointer;
   }
-.event-list-container {
+  .event-list-container {
     margin-top: 20px;
+  }
+
+  .event-list-container h2 {
+    text-align: center;
+    font-size: 30px;
   }
   
   .event-list-table {
@@ -43,17 +48,36 @@
   
   .event-list-table th,
   .event-list-table td {
-    border: 1px solid #ccc;
-    padding: 8px;
+    border: 1px solid #ddd; /* Change border color */
+    padding: 12px; /* Increase padding for better spacing */
     text-align: left;
   }
   
   .event-list-table th {
-    background-color: #f2f2f2;
+    background-color: #f8f9fa; /* Light gray background for table header */
+    font-weight: bold;
   }
   
-  .event-list-table th:last-child,
-  .event-list-table td:last-child {
-    text-align: center;
+  .event-list-table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Alternate row background color */
   }
+  
+  .event-list-table tr:hover {
+    background-color: #e2e6ea; /* Hover effect for rows */
+  }
+  
+  .event-list-table button {
+    background-color: #007bff; /* Blue button background color */
+    color: #fff; /* White button text color */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .event-list-table button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
   

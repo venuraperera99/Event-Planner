@@ -1,3 +1,41 @@
+/* App.css */
+
+/* Header styling */
+.header {
+  background-color: #007bff; /* Blue background color */
+  color: #fff; /* White text color */
+  padding: 20px; /* Add padding */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+.header h1 {
+  margin: 0; /* Remove margin */
+  font-size: 24px; /* Increase font size */
+}
+
+/* Button styling */
+.header button {
+  padding: 10px 20px; /* Add padding */
+  font-size: 16px; /* Increase font size */
+  background-color: #0056b3; /* Darker blue background color */
+  color: #fff; /* White text color */
+  border: none; /* Remove border */
+  border-radius: 4px; /* Add border radius */
+  cursor: pointer; /* Add pointer cursor */
+  transition: background-color 0.3s ease; /* Add transition effect */
+}
+
+.header button:hover {
+  background-color: #004080; /* Darker blue background color on hover */
+}
+
+.header button:first-child {
+  margin-right: 10px; /* Add spacing between the two buttons */
+}
+
 .modal {
   display: flex;
   align-items: center;
@@ -32,3 +70,4 @@
   text-decoration: none;
   cursor: pointer;
 }
+

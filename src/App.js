@@ -21,10 +21,12 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Calendar App</h1>
-      <div>
-        <button onClick={() => setShowEventForm(true)}>Create Event</button>
-        <button onClick={handleViewChange}>View {view === 'calendar' ? 'Events' : 'Calendar'}</button>
+      <div className="header">
+        <h1>Event Scheduler</h1>
+        <div>
+          <button onClick={() => setShowEventForm(true)}>Create Event</button>
+          <button onClick={handleViewChange}>View {view === 'calendar' ? 'Events' : 'Calendar'}</button>
+        </div>
       </div>
       {showEventForm && (
         <div className="modal">
