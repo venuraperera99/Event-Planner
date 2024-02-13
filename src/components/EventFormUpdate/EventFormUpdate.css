@@ -1,0 +1,48 @@
+.event-form-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .event-form-container h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 30px;
+  }
+  
+  .event-form-container form div {
+    margin-bottom: 15px;
+  }
+  
+  .event-form-container form div label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .event-form-container form div input[type='text'],
+  .event-form-container form div input[type='date'],
+  .event-form-container form div select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .event-form-container form div input[type='date'] {
+    display: inline-block;
+    width: calc(50% - 5px);
+    margin-right: 10px;
+  }
+  
+  .event-form-container form div.button-container {
+    text-align: center; 
+    margin-top: 20px; 
+  }
+  
+  .event-form-container form div.button-container button {
+    padding: 12px 24px; 
+    font-size: 16px; 
+    margin: 0 10px; 
+  }
