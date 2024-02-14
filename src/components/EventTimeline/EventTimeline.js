@@ -1,44 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { Scheduler } from "@bitnoi.se/react-scheduler";
-import './EventTimeline.css'; 
+import './EventTimeline.css';
 import "@bitnoi.se/react-scheduler/dist/style.css";
+import { API_URL, EVENT_TYPE_COLORS } from '../../utils/constants';
 
-const URL = "http://localhost:4000";
-
-const eventTypeColors = {
-  Meeting: "Blue",
-  Project: "Green",
-  Tournament: "Yellow",
-  Merger: "Gray",
-  Dividends: "Gold",
-  Hire: "Navy Blue",
-  "New Capital": "Mint Green",
-  Convention: "Purple",
-  Social: "Pink",
-  "Academic Semester": "Orange",
-  Holiday: "Red",
-  Campaign: "Cyan",
-};
 
 const EventTimeline = ({ refreshKey }) => {
   const [filterButtonState, setFilterButtonState] = useState(0);
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetchEvents();
+    fetchEventData();
   }, [refreshKey]);
 
-  const fetchEvents = async () => {
+  const fetchEventData = async () => {
     try {
-      const response = await fetch(URL + '/events');
+      const response = await fetch(API_URL + '/events');
       if (!response.ok) {
         throw new Error('Failed to fetch events');
       }
       const data = await response.json();
       const eventsWithProps = data.map(event => ({
         ...event,
-        bgColor: eventTypeColors[event.type] || "black",
-        subtitle: event.type 
+        bgColor: EVENT_TYPE_COLORS[event.type] || "black",
+        subtitle: event.type
       }));
       setEvents(eventsWithProps);
     } catch (error) {
@@ -57,10 +42,9 @@ const EventTimeline = ({ refreshKey }) => {
       data: events
     }
   ];
-  
+
   return (
     <div className="eventtimeline-container">
-      
       <Scheduler
         data={schedulerData}
         isLoading={false}
@@ -78,7 +62,6 @@ const EventTimeline = ({ refreshKey }) => {
           filterButtonState,
         }}
       />
-
     </div>
   );
 };

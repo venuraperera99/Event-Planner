@@ -29,7 +29,7 @@ function App() {
           <button onClick={handleViewChange}>View {view === 'eventTimeline' ? 'Events' : 'Timeline'}</button>
         </div>
       </div>
-      <div className="content-container"> {/* Add a container div for the content */}
+      <div className="content-container">
         {showEventForm && (
           <div className="modal">
             <div className="modal-content">

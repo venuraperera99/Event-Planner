@@ -2,16 +2,15 @@ import React, { useEffect } from 'react';
 import './EventForm.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-
-const URL = "http://localhost:4000";
-let requestData;
+import { formatDate } from '../../utils/utils';
+import { API_URL } from '../../utils/constants';
 
 const EventForm = ({ onClose, onEventCreated, eventId, onEventUpdated }) => {
   const isUpdateForm = eventId !== undefined;
 
   useEffect(() => {
     if (isUpdateForm) {
-      fetch(`${URL}/events/${eventId}`)
+      fetch(`${API_URL}/events/${eventId}`)
         .then(response => response.json())
         .then(data => {
           data.startDate = formatDate(new Date(data.startDate));
@@ -45,9 +44,9 @@ const EventForm = ({ onClose, onEventCreated, eventId, onEventUpdated }) => {
     validationSchema,
     onSubmit: async (values) => {
       try {
-        const url = isUpdateForm ? `${URL}/events/${eventId}` : `${URL}/events`;
+        let requestData;
+        const url = isUpdateForm ? `${API_URL}/events/${eventId}` : `${API_URL}/events`;
         const method = isUpdateForm ? 'PUT' : 'POST';
-
         const startDate = new Date(values.startDate);
         const endDate = new Date(values.endDate);
 
@@ -58,7 +57,7 @@ const EventForm = ({ onClose, onEventCreated, eventId, onEventUpdated }) => {
         if (isUpdateForm) {
           requestData = values;
         } else {
-          const id = generateRandomId(); // Generate a random ID
+          const id = generateRandomId();
           requestData = { id, ...values, startDate, endDate };
         }
 
@@ -87,10 +86,6 @@ const EventForm = ({ onClose, onEventCreated, eventId, onEventUpdated }) => {
     },
   });
 
-  // Function to format date to display only date part
-  const formatDate = (date) => {
-    return date.toISOString().split('T')[0]; // Get only the date part
-  };
 
   return (
     <div className="event-form-container">

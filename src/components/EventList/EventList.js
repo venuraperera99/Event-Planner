@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
-//import EventFormUpdate from '../EventFormUpdate/EventFormUpdate';
 import EventForm from '../EventForm/EventForm';
-
 import './EventList.css';
+import { formatDate } from '../../utils/utils';
+import { API_URL } from '../../utils/constants';
 
-const URL = "http://localhost:4000";
 
 const EventList = ({ refreshKey }) => {
   const [events, setEvents] = useState([]);
   const [editEventId, setEditEventId] = useState(null);
 
   useEffect(() => {
-    fetchEvents();
+    fetchEventData();
   }, [refreshKey]);
 
   const openEditModal = (eventId) => {
@@ -22,9 +21,9 @@ const EventList = ({ refreshKey }) => {
     setEditEventId(null); 
   };
 
-  const fetchEvents = async () => {
+  const fetchEventData = async () => {
     try {
-      const response = await fetch(URL + '/events');
+      const response = await fetch(API_URL + '/events');
       if (!response.ok) {
         throw new Error('Failed to fetch events');
       }
@@ -37,21 +36,18 @@ const EventList = ({ refreshKey }) => {
 
   const deleteEvent = async (eventId) => {
     try {
-      const response = await fetch(`${URL}/events/${eventId}`, {
+      const response = await fetch(`${API_URL}/events/${eventId}`, {
         method: 'DELETE',
       });
       if (!response.ok) {
         throw new Error('Failed to delete event');
       }
-      fetchEvents();
+      fetchEventData();
     } catch (error) {
       console.error('Error deleting event:', error);
     }
   };
 
-  const formatDate = (date) => {
-    return date.toISOString().split('T')[0]; // Get only the date part
-  };
 
   return (
     <div className="event-list-container">
@@ -84,7 +80,7 @@ const EventList = ({ refreshKey }) => {
        <div className="modal">
         <div className="modal-content">
           <span className="close" onClick={closeEditModal}>&times;</span>
-            <EventForm eventId={editEventId} onClose={closeEditModal} onEventUpdated={fetchEvents}/>
+            <EventForm eventId={editEventId} onClose={closeEditModal} onEventUpdated={fetchEventData}/>
         </div>
       </div>}
     </div>

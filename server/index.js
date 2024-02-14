@@ -5,24 +5,21 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+const EVENTS_FILE_PATH = path.join(__dirname, 'events.json');
 
 app.use(cors());
 app.use(express.json());
 
-const EVENTS_FILE_PATH = path.join(__dirname, 'events.json');
-
-// Helper function to read event data from JSON file
 const readEventsFromFile = () => {
     const eventsData = fs.readFileSync(EVENTS_FILE_PATH);
     return JSON.parse(eventsData);
 };
 
-// Helper function to write event data to JSON file
 const writeEventsToFile = (events) => {
     fs.writeFileSync(EVENTS_FILE_PATH, JSON.stringify(events, null, 2));
 };
 
-// Routes
+// ----------------Routes--------------------
 
 // Get all events
 app.get('/events', (req, res) => {
