@@ -49,6 +49,10 @@ const EventList = ({ refreshKey }) => {
     }
   };
 
+  const formatDate = (date) => {
+    return date.toISOString().split('T')[0]; // Get only the date part
+  };
+
   return (
     <div className="event-list-container">
       <h2>Event List</h2>
@@ -67,8 +71,8 @@ const EventList = ({ refreshKey }) => {
           {events.map(event => (
             <tr key={event.id}>
               <td>{event.title}</td>
-              <td>{event.startDate}</td>
-              <td>{event.endDate}</td>
+              <td>{formatDate(new Date(event.startDate))}</td>
+              <td>{formatDate(new Date(event.endDate))}</td>
               <td>{event.type}</td>
               <td><button onClick={() => openEditModal(event.id)}>Edit</button></td>
               <td><button onClick={() => deleteEvent(event.id)}>Delete</button></td>

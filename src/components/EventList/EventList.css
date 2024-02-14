@@ -48,27 +48,27 @@
   
   .event-list-table th,
   .event-list-table td {
-    border: 1px solid #ddd; /* Change border color */
-    padding: 12px; /* Increase padding for better spacing */
+    border: 1px solid #ddd;
+    padding: 12px; 
     text-align: left;
   }
   
   .event-list-table th {
-    background-color: #f8f9fa; /* Light gray background for table header */
+    background-color: #f8f9fa; 
     font-weight: bold;
   }
   
   .event-list-table tr:nth-child(even) {
-    background-color: #f2f2f2; /* Alternate row background color */
+    background-color: #f2f2f2; 
   }
   
   .event-list-table tr:hover {
-    background-color: #e2e6ea; /* Hover effect for rows */
+    background-color: #e2e6ea; 
   }
   
   .event-list-table button {
-    background-color: #007bff; /* Blue button background color */
-    color: #fff; /* White button text color */
+    background-color: #007bff; 
+    color: #fff; 
     border: none;
     padding: 8px 16px;
     border-radius: 4px;
@@ -77,7 +77,7 @@
   }
   
   .event-list-table button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3; 
   }
   
   

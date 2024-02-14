@@ -13,7 +13,11 @@ const EventForm = ({ onClose, onEventCreated, eventId, onEventUpdated }) => {
     if (isUpdateForm) {
       fetch(`${URL}/events/${eventId}`)
         .then(response => response.json())
-        .then(data => formik.setValues(data))
+        .then(data => {
+          data.startDate = formatDate(new Date(data.startDate));
+          data.endDate = formatDate(new Date(data.endDate));
+          formik.setValues(data);
+        })
         .catch(error => console.error('Error fetching event data:', error));
     }
   }, [eventId, isUpdateForm]);
@@ -43,12 +47,21 @@ const EventForm = ({ onClose, onEventCreated, eventId, onEventUpdated }) => {
       try {
         const url = isUpdateForm ? `${URL}/events/${eventId}` : `${URL}/events`;
         const method = isUpdateForm ? 'PUT' : 'POST';
+
+        const startDate = new Date(values.startDate);
+        const endDate = new Date(values.endDate);
+
+        if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+          throw new Error('Invalid date format');
+        }
+
         if (isUpdateForm) {
           requestData = values;
         } else {
           const id = generateRandomId(); // Generate a random ID
-          requestData = { id, ...values };
+          requestData = { id, ...values, startDate, endDate };
         }
+
         const response = await fetch(url, {
           method,
           headers: {
@@ -73,6 +86,11 @@ const EventForm = ({ onClose, onEventCreated, eventId, onEventUpdated }) => {
       }
     },
   });
+
+  // Function to format date to display only date part
+  const formatDate = (date) => {
+    return date.toISOString().split('T')[0]; // Get only the date part
+  };
 
   return (
     <div className="event-form-container">

@@ -1,6 +1,7 @@
-/* Calendar.css */
-.calendar-container {
-  margin-top: 100px;
+.eventtimeline-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
 }
 
 h2 {

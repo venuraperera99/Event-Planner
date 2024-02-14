@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState } from 'react';
 import EventForm from './components/EventForm/EventForm';
 import EventList from './components/EventList/EventList';
+import EventTimeline from './components/EventTimeline/EventTimeline';
 
 function App() {
   const [showEventForm, setShowEventForm] = useState(false);
@@ -12,7 +13,7 @@ function App() {
   };
 
   const handleViewChange = () => {
-    setView(prevView => (prevView === 'calendar' ? 'eventList' : 'calendar'));
+    setView(prevView => (prevView === 'eventTimeline' ? 'eventList' : 'eventTimeline'));
   };
 
   const refreshEventList = () => {
@@ -25,18 +26,20 @@ function App() {
         <h1>Event Scheduler</h1>
         <div>
           <button onClick={() => setShowEventForm(true)}>Create Event</button>
-          <button onClick={handleViewChange}>View {view === 'calendar' ? 'Events' : 'Calendar'}</button>
+          <button onClick={handleViewChange}>View {view === 'eventTimeline' ? 'Events' : 'Timeline'}</button>
         </div>
       </div>
-      {showEventForm && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={handleCloseEventForm}>&times;</span>
-            <EventForm onClose={handleCloseEventForm} onEventCreated={refreshEventList} />
+      <div className="content-container"> {/* Add a container div for the content */}
+        {showEventForm && (
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={handleCloseEventForm}>&times;</span>
+              <EventForm onClose={handleCloseEventForm} onEventCreated={refreshEventList} />
+            </div>
           </div>
-        </div>
-      )}
-      {view === 'calendar' ? <div>Calendar component goes here</div> : <EventList refreshKey={showEventForm} />}
+        )}
+        {view === 'eventTimeline' ? <EventTimeline  refreshKey={showEventForm}/> : <EventList refreshKey={showEventForm} />}
+      </div>
     </div>
   );
 }
